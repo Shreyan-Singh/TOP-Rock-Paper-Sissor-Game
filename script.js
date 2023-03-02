@@ -47,6 +47,7 @@ function playRound(playerSelection,computerSelection){
     }
     
 }
+//this staets the game
 function game(){
     window.playerScore=0;
     window.computerScore=0;
