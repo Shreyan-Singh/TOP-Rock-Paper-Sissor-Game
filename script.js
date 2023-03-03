@@ -1,12 +1,20 @@
 
+const divScore = document.getElementById('score');
+    const divComChoice = document.createElement("div");
+    const divChoseAgain = document.createElement("div");
+    divComChoice.style.cssText="font-size:large; color:red;";
+    divChoseAgain.style.cssText="font-size:large; color:blue;";
 
+    divScore.appendChild(divComChoice);
 
 
 window.playerScore=0;
     window.computerScore=0;
-window.count=0;
+window.count=1;
 
 function reset(){
+    divChoseAgain.textContent = "";
+
 window.playerScore=0;
     window.computerScore=0;
 window.count=0;
@@ -25,14 +33,21 @@ const onClick = (event) => {
     
     const playerSelection=(event.target.textContent).toLowerCase();
     const computerSelection=getComputerChoice();
+    divComChoice.textContent="Computer choose:"+computerSelection;
+
+    
+
     console.log(count);
-    if(count<5){
+    if(count<=5){
+    divScore.appendChild(divChoseAgain);
+
     playRound(playerSelection,computerSelection);
     
    
 }
   }
-  window.addEventListener('click', onClick);
+  
+  addEventListener('click', onClick);
    
 
 function playRound(playerSelection,computerSelection){
@@ -75,6 +90,11 @@ function playRound(playerSelection,computerSelection){
         playerScore=playerScore+1;
         computerScore=computerScore+0;
     }
+    divChoseAgain.textContent = "Make your Choice again";
+
+
+    const round=document.getElementById('round');
+    round.textContent="Round:"+count;
     
     const yourScore=document.getElementById('yourScore');
     yourScore.textContent=playerScore;
@@ -82,7 +102,10 @@ function playRound(playerSelection,computerSelection){
     const computerP=document.getElementById('computerScore');
     computerP.textContent=computerScore;
 
-    if(count===4){
+    if(count===5){
+    divChoseAgain.textContent = "";
+
+
         if(playerScore>computerScore){
             const playerWin=document.getElementById('winner');
             playerWin.textContent="You Won";
